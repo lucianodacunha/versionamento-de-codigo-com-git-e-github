@@ -142,3 +142,36 @@ $ git br -v
 
 Neste caso, vemos que o branch atual é o `main`, no commit a5a8.
 Mas existe também um branch `teste`, no commit `4c68`.
+
+>> utilizando fetch
+
+Para apenas baixar as alterações remotas sem mesclar com o repo local:
+
+```
+$ git fetch origin main
+```
+
+Após executar o `fetch`, verifique as diferenças existentes:
+
+```
+$ git diff main origin/main
+diff --git a/README.md b/README.md
+index 44106ed..a89502a 100644
+--- a/README.md
++++ b/README.md
+@@ -3,3 +3,4 @@ Linha 2
+ Linha 3
+ Linha 4
+ Linha 5
++Linha 6
+```
+
+E caso queira mesclar as versões:
+
+```
+$ git merge origin/main
+Updating d608fb2..03cc80c
+Fast-forward
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+```
