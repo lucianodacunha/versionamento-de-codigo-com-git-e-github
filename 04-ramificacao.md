@@ -131,3 +131,14 @@ $ git pull --rebase
 * a25161a Add file2
 * d66e61d Add file1
 ```
+
+>> Para visualizar todas as branches e seus commits atuais:
+
+```
+$ git br -v
+* main  a5a84fe Linha 4
+  teste 4c68f88 Linha 5.
+```
+
+Neste caso, vemos que o branch atual é o `main`, no commit a5a8.
+Mas existe também um branch `teste`, no commit `4c68`.
