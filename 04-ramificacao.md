@@ -175,3 +175,9 @@ Fast-forward
  README.md | 1 +
  1 file changed, 1 insertion(+)
 ```
+
+>> Clonando branch específico de um repositório:
+
+```
+$ git clone url-do-repo.git --branch nome-da-branch --single-branch nome-do-diretorio
+```
