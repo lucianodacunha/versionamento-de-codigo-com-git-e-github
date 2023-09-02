@@ -1,14 +1,16 @@
-# 02 - Essencial do Git
+# 02 - Essencial do Git - Parte I
 
 ## Inicializando um repositório
 
-- Dentro da pasta do projeto, execute o comando:
+> Os exemplos de saída de código, foram extraídos de um prompt no ambiente Linux
+
+Para inicializar um repositório, dentro da pasta do projeto, execute o comando:
 
 ```
 $ git init
 ```
 
-- Uma estrutura de diretório será criada para monitorar o versionamento:
+Uma estrutura de diretório será criada para monitorar o versionamento. Considerando um diretório chamado `git-e-github-para-iniciantes`, a estrutura seria algo como: 
 
 ```
 git-e-github-para-iniciantes/
@@ -28,13 +30,13 @@ git-e-github-para-iniciantes/
 └── Readme.md
 ```
 
-## O ciclo de vida dia status de seus arquivos
+## O ciclo de vida e os status de seus arquivos
 
-- **untracked:** não marcado, acabou de ser add no repo e ainda não foi reconhecido pelo git.
+- **untracked:** não marcado, o arquivo acabou de ser adicionado no repositório e ainda não foi reconhecido pelo git.
 
 ```
 $ touch Readme.md
-$ git st
+$ git status
 
 On branch master
 
@@ -48,11 +50,13 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-- **unmodified:** add no stage, mas não foi feito o commit.
+> `touch` é um comando Linux, utilizado para _tocar_ um arquivo. Caso o arquivo existe, a data de modificação é alterada, caso não existe, o arquivo é criado.
+
+- **unmodified:** o arquivo foi adicionado no stage, mas não foi feito o commit.
 
 ```
 $ git add .
-$ git st
+$ git status
 On branch master
 
 No commits yet
@@ -64,11 +68,11 @@ Changes to be committed:
 
 ```
 
-- **modified:** existe no stage, porém existem alterações que devem ser enviadas para o staged.
+- **modified:** o arquivo existe no stage, porém ainda existem alterações que devem ser enviadas para o stage/adicionadas.
 
 ```
 $ echo "Nova linha adicionada" >> Readme.md 
-$ git st
+$ git status
 On branch master
 
 No commits yet
@@ -87,11 +91,11 @@ Changes not staged for commit:
 
 ```
 
-- **staged:** alterações incluídas no staged, arquivo disponível para commit.
+- **staged:** alterações incluídas no stage, ou seja, o arquivo está disponível para commit.
 
 ```
 $ git add .
-$ git st
+$ git status
 On branch master
 
 No commits yet
@@ -103,17 +107,19 @@ Changes to be committed:
 
 ```
 
-Nesse case, para fazer o commit, execute o comando:
+Nesse caso, para fazer o commit, execute o comando:
 
 ```
-$ git ci -m 'Add Readme.md'
+$ git commit -m 'Add Readme.md'
 [master (root-commit) fef5e6e] Add Readme.md
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 Readme.md
-$ git st
+$ git status
 On branch master
 nothing to commit, working tree clean
 ```
+
+# 02 - Essencial do Git - Parte II
 
 ## Visualizando logs
 
@@ -170,6 +176,8 @@ $ git log --graph
 $ git show 3621c562ca13cd41cde6334c643e8412ab6ac053
 ```
 
+# 02 - Essencial do Git - Parte III
+
 ## Visualizando o diff
 
 - Visualizando mudanças antes do stage.
@@ -196,14 +204,15 @@ index ca6549f..0b73485 100644
 git diff --name-only
 ```
 
-## Desfazendo coisas
+# 02 - Essencial do Git - Parte IV
 
+## Desfazendo coisas
 
 #### Excluindo alterações antes do stage
 
 ```
 $ echo "Nova linha adicionada 7" >> Readme.md 
-$ git st
+$ git status
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -227,8 +236,8 @@ index 654e88c..fba9807 100644
 Alteração adicionada.
 
 ```
-$ git co Readme.md
-$ git st
+$ git checkout Readme.md
+$ git status
 On branch master
 nothing to commit, working tree clean
 $ git diff
@@ -239,7 +248,7 @@ $
 
 ```
 $ echo "Nova linha adicionada 7" >> Readme.md 
-$ git st
+$ git status
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -249,7 +258,7 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 $ git add .
-$ git st
+$ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -263,7 +272,7 @@ Neste ponto, as modificações já foram enviadas para o stage.
 $ git reset HEAD
 Unstaged changes after reset:
 M	Readme.md
-$ git st
+$ git status
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -277,8 +286,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Modificações removidas do stage.
 
 ```
-$ git co Readme.md
-$ git st
+$ git checkout Readme.md
+$ git status
 On branch master
 nothing to commit, working tree clean
 $ 
@@ -311,18 +320,22 @@ $ git reset --hard 9936c23
 - Sempre informar o hash do commit anterior ao que será excluído!
 - Utilize o reset hard antes do push.
 
-> Por padrão, o git não reconhece diretórios vazios. Desta forma, existe uma convenção utilizada quando se deseja incluir diretórios vazios que é criar um arquivo chamado `.gitkeep`.
+# 02 - Essencial do Git - Parte VI
+
+## Commitando pastas/diretórios vazios
+
+ Por padrão, o git não reconhece diretórios vazios. Desta forma, existe uma convenção utilizada quando se deseja incluir diretórios vazios que é criar um arquivo chamado `.gitkeep`.
 
 ```
 $ mkdir diretorio-vazio
-$ git st
+$ git status
 On branch main
 
 No commits yet
 
 nothing to commit (create/copy files and use "git add" to track)
 $ touch diretorio-vazio/.gitkeep
-$ git st
+$ git status
 On branch main
 
 No commits yet
